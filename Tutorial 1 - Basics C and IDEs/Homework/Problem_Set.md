@@ -180,4 +180,4 @@ Maximum Scores:
 ```
 
 # How to submit the Homework
-This is the first year we adopt ZINC as our grading system. Setup is unfortunately still in progress, and we are working hard on it. Please be patient and stay tuned for any further announcement. Meanwhile, if you would, you can create a private repo using our public Homework template and store your code there.
+This is the first year we adopt ZINC as our grading system. Setup is unfortunately still in progress, and we are working hard on it. Please be patient and stay tuned for any further announcement. Meanwhile, if you would, you can create a private repo using our [public homework template](https://github.com/UST-Robotics-Team/SoftwareTutorialHW) and store your code there.
