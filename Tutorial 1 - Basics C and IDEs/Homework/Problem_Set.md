@@ -1,6 +1,7 @@
-# Homework for Tutorial 1 - Basics of C [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@Oil/H1nE_uU7t) 
+# Homework for Tutorial 1 - Basics of C [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@leowong12138/H1Sp3bn-j) 
 
 Author: Li Ka Yau Elwin
+Modified by: Wong Lok Yin Leo and Tsang Hing To Dennis
 
 ## Table of Content
 
@@ -31,14 +32,23 @@ Output=756B5B3
 
 You just have to handle 3 systems: decimal, binary and hexadecimal, which the converter can convert the set of number in between these three systems.
 
-However, if the user a wrong number system, an error message should be outputted:
+However, if the user entered a wrong number system, an error message should be outputted:
 ### Ouput Format
-```c=
+```c
 Please enter a set of number:
->9999 //a set of number the user inputted
+>9999 // a set of number the user inputted
 Please enter the current number system:
->2 //indicate that the above number set is a binary number
+>2 // indicate that the above number set is a binary number
 Error! That set of number is not a binary number.
+```
+```c
+Please enter a set of number:
+>9999 // a set of number the user inputted
+Please enter the current number system:
+>3 // unsupported number system
+Error! The number system is not supported.
+
+// terminate the program
 ```
 
 ## Mean, Mode and Median
@@ -180,4 +190,4 @@ Maximum Scores:
 ```
 
 # How to submit the Homework
-This is the first year we adopt ZINC as our grading system. Setup is unfortunately still in progress, and we are working hard on it. Please be patient and stay tuned for any further announcement. Meanwhile, if you would, you can create a private repo using our public Homework template and store your code there.
+This is the first year we adopt ZINC as our grading system. Setup is unfortunately still in progress, and we are working hard on it. Please be patient and stay tuned for any further announcement. Meanwhile, if you would, you can create a private repo using our [public homework template](https://github.com/UST-Robotics-Team/SoftwareTutorialHW) and store your code there.
