@@ -1,7 +1,7 @@
 # Homework for Tutorial 1 - Basics of C [![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@leowong12138/H1Sp3bn-j) 
 
 Author: Li Ka Yau Elwin
-Modified by: Wong Lok Yin Leo and Tsang Hing To Dennis
+Modified by: Wong Lok Yin Leo and Tsang Hong Ting Dennis
 
 ## Table of Content
 
