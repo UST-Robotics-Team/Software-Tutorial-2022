@@ -9,7 +9,7 @@ Modified by: Wong Lok Yin Leo and Tsang Hong Ting Dennis
 [TOC]
 
 :::info
-All floating point answer should be at most 1 d.p., e.g. 1.07 = 1.0, 4.40506 = 4.4 
+All floating point answer should be at most 1 d.p., e.g. 1.07 = 1.1, 4.40506 = 4.4, round to the nearest
 :::
 
 ## Number System Converter
