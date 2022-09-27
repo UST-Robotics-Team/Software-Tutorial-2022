@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 const char* const msg_prompt_input = "Please enter a string:\n";
-const char* const msg_max_scores = "Maximum Scores:\n";
+const char* const msg_max_scores = "Maximum Score:\n";
 
 int main(){
     printf("%s", msg_prompt_input);
