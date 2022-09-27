@@ -1,10 +1,9 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-char* msg_input = "Input:\n";
-char* msg_output = "Output:\n";
+const char* const msg_input = "Input:\n";
+const char* const msg_output = "Output:\n";
 int main(){
-    printf(msg_input);
+    printf("%s", msg_input);
     /**
      * @brief 
      * get input from the terminal, please refer to the Problem_Set.md for format.
@@ -18,6 +17,6 @@ int main(){
      * 5
      */
     // TODO:
-    printf(msg_output);
+    printf("%s", msg_output);
     return 0;
 }

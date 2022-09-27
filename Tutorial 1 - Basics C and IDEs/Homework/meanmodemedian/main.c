@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-char* msg_prompt_number = "Enter a number to append to the number set. Enter '\"\\'\"  to stop appending.\n";
-char* msg_output_mean = "Mean=";
-char* msg_output_mode = "Mode=";
-char* msg_output_median = "Median=";
+const char* const msg_prompt_number = "Enter a number to append to the number set. Enter \"\\\"  to stop appending.\n";
+const char* const msg_output_mean = "Mean=";
+const char* const msg_output_mode = "Mode=";
+const char* const msg_output_median = "Median=";
 
 int main(){
-    printf(msg_prompt_number);
+    printf("%s", msg_prompt_number);
     
     /**
      * @brief 
