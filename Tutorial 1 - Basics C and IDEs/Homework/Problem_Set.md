@@ -4,14 +4,19 @@ Author: Li Ka Yau Elwin
 Modified by: Wong Lok Yin Leo and Tsang Hong Ting Dennis
 
 ## Table of Content
-
+Following libraries is allowed:
+* <stdio.h>
+* <string.h>
+* <stdbool.h>
+* <stdint.h>
+* <math.h> (only round() is allowed)
 
 [TOC]
 
 :::info
 All floating point answer should be at most 1 d.p., e.g. 1.07 = 1.1, 4.40506 = 4.4, round to the nearest
 :::
-
+F
 ## Number System Converter
 
 There are so many number systems. Commonly we will have decimal, binary and hexadecimal systems.
