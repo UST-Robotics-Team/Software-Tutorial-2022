@@ -221,4 +221,4 @@ All other libraries are disallowed.
 * If the rounded value is an integer (e.g. 3.0, -2.0, 42.0), then chop off the `.0` and print the integer part (e.g. 3, -2, 42).
 
 ### How do I submit homework?
-This year we'll be adopting the ZINC platform as our grading system. Setup is unfortunately still in progress, and we are working hard on it. Please be patient and stay tuned for further announcements. Meanwhile, you can create a private repo using our [public homework template](https://github.com/UST-Robotics-Team/SoftwareTutorialHW) and store your code there.
+This year we'll be adopting the ZINC platform as our grading system. Please visit [ZINC](https://zinc.cse.ust.hk/assignments) to upload your answers (upload a .zip file with only main.c inside). All public test cases are listed at `Test_Cases.md` and hidden test cases will be conducted after the deadline of the homework submission.
