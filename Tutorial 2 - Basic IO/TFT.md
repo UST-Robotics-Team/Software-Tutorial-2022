@@ -37,7 +37,7 @@ In Java,
 
 ```java
 int c = 25;
-System.out.println("The value of c-squared is ",c*c);
+System.out.println("The value of c-squared is " + c*c);
 //Output will come as "The value of c-squared is : 625"
 ```
 
