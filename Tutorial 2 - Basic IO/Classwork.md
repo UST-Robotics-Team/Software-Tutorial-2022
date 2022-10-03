@@ -90,3 +90,6 @@ Consider 2 uses for **a** button:
 * **Long press** and release `BTN2` for it to move down for one `CHAR_HEIGHT`. 
 
 ***
+
+## How to submit
+Please refer to this markdown document [Link](https://github.com/UST-Robotics-Team/Software-Tutorial-2022/blob/main/Homework_demo.md)
