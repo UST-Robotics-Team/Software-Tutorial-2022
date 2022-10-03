@@ -85,7 +85,7 @@ Consider 2 uses for **a** button:
 
 - Create a sprite in the middle of the screen. (Can be in any shape other than simple rectangle) 
 - It will move to the left for one `CHAR_WIDTH` when `BTN1` is clicked and released, 
-* move to the right for one `CHAR_WIDTH` when `BTN2` is clicked and released. 
+* Move to the right for one `CHAR_WIDTH` when `BTN2` is clicked and released. 
 - **Long press (> 300ms)** and release `BTN1` for it to move up for one `CHAR_HEIGHT`. 
 * **Long press** and release `BTN2` for it to move down for one `CHAR_HEIGHT`. 
 
