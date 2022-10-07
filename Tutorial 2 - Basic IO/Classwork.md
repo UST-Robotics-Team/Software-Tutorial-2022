@@ -29,6 +29,7 @@ void tft_classwork(void);
     * LED3 BLUE
     * BTN1 RED one
     * BTN2 GREEN one
+    * Order: BTN2 -> BTN1 -> BTN1 & BTN2
 
 
 ## **Task 2** :TFT
@@ -36,8 +37,14 @@ void tft_classwork(void);
 - Print the time elapsed with the format of `mm:ss:sssZ` where `sssZ` means millisecond. e.g. `00:23:109` **(@2)**
 - Print a 50px $\times$ 50px square directly under the elapsed time where its color changes when 1 second passed.**(@2)**
 * Keywords: `HAL_GetTick`
+* Hints:
+    * $1234 \mod 10 = 4$
+    * Integer division ${{1234}\over{10}} = 123$
+    * $\text{1 min = 60 second, 1 second = 1000 milisecond}$
 * ![](https://i.imgur.com/2K6QaHR.gif)
     * The actual size of square printed on TFT should be larger than this one
+> Dont use`__forceinline static void fillRect(int16_t x, int16_t y, int16_t w, int16_t h,
+        uint16_t color) ` as it seems to cause error
 
 ***
 ***
@@ -75,29 +82,28 @@ Consider 2 uses for **a** button: (choose BTN1 or BTN2)
   - In this case every time the loop comes around, we are concerned with the **current state** (or level) of the buttons GPIO Pin
   - The implementation of the button reading here should be obvious and simple
 
-* ![](https://i.imgur.com/UmErfzW.gif)
+![](https://i.imgur.com/qSrTmjr.gif)
     * The green button and the green LED
 ***
 ### **Q2 Edge Triggering** 
 
-- We wanted to print `Hello, (Your name)` for 1 second when the button is clicked (<200 ms), but only once, so holding the button does nothing more.
-* When the button is released, we want to flash the LED for 1 second, but again only once. 
-* The process repeats. i.e. it will print text again if you click the button. 
+- We wanted to print `Hello, (Your name)` for 1 second when the button is clicked (<200 ms), but only once, so holding the button does nothing more. **(@1)**
+* When the button is released, we want to flash the LED for 1 second, but again only once. **(@1)** 
+* The process repeats. i.e. it will print text again if you click the button. **(@1)**
 * Keywords:
   - The event of a signal going from low to high is called the ___rising edge___ and the opposite is the ___falling edge___
   - The `gpio_read()` macro gives us the current state, but edge triggering also requires knowledge of the **past state** as well as some logic
 
 * Hints: How can we design some code that can call a function _only_ when the button is first clicked? (Rising edge)
 
-* 
 ***
 ### **Bonus**
 
 - Create a sprite in the middle of the screen. (Can be in any shape other than simple rectangle) **(@1)**
-- It will move to the left for one `CHAR_WIDTH` when `BTN1` is clicked and released, **(@1)**
-* move to the right for one `CHAR_WIDTH` when `BTN2` is clicked and released. **(@2)**
-- **Long press (> 300ms)** and release `BTN1` for it to move up for one `CHAR_HEIGHT`. **(@3)**
-* **Long press** and release `BTN2` for it to move down for one `CHAR_HEIGHT`. **(@3)**
+- It will move to the left for one `CHAR_WIDTH` when `BTN1` is clicked and released, 
+* move to the right for one `CHAR_WIDTH` when `BTN2` is clicked and released. **(@2 for both short press)**
+- **Long press (> 300ms)** and release `BTN1` for it to move up for one `CHAR_HEIGHT`.
+* **Long press** and release `BTN2` for it to move down for one `CHAR_HEIGHT`. **(@4 for both long press)**
 ***
 # FAQ
 ***
