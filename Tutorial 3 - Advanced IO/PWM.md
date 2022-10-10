@@ -1,12 +1,13 @@
-# Tutorial 3 - Advanced IO(PWM) [![HackMD Version](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@ytyk668/HysNzr5p9)
+# Tutorial 3 - Advanced IO(PWM)
 
-Author Details (TL:DR;)
+:::spoiler Author Details (TL:DR;)
 Authors: Kelvin Leonardo
 
 Modified by: Law a.k.a. Johnny Lo a.k.a. Lo King Lam
 
 Stolen by: Amber
 Stolen again by: Katie
+:::
 
 Contact: Katie (tyyeungah@connect.ust.hk)
 
@@ -62,11 +63,11 @@ As you can see, when there are 37 peaks in **Clock after Prescaler**, the **Auto
 
 On the above picture you can see that the **prescaler value** and **auto-reload counter** help reduce the frequency of the **MCU_Clock** and generate a lower frequency. 
 
-The **Prescaler value** and **Auto-reload value** are limited to a 16-bit unsigned integer only. Thus, the maximum value of both values is $2^{16} - 1 = 65535$.
-
 The purpose of having both of them is that our MCU runs at a high frequency. If we were to work with servos (assume they require 50Hz) and use only the Prescaler or only the Auto-Reload, we won't be able to reduce to the targeted frequency. That's why we need both.
 
 The difference between the two is that **Prescaler value** is just aiming to reduce the frequency, while **auto-reload counter** also aims as a counter.
+
+*The **Prescaler value** and **Auto-reload value** are limited to a 16-bit unsigned integer only. Thus, the maximum value of both values is $2^{16} - 1 = 65535$.*
 
 After all, how do we get the output frequency???
 
@@ -77,7 +78,7 @@ $Freqency\:Output = \frac{Frequency \: of\:clock}{(Prescaler\:Value+1) \cdot (Au
 If we need a frequency output of 50Hz, what are the 3 possible combinations of prescaler value and auto-reload value? (Given that the clock frequency is 84MHz)
 :::
 
-## The On-time(duty cycle)
+## The On-time(duty cycle) (angle of pwm motor)
 
 #### Duty cycle:
 According to the figure below, the number on the left-hand side is the duty cycle, it means the percentage of time that a signal is given as "high"(or 5V). $i.e. \frac{On-Time}{Period}$
@@ -121,7 +122,7 @@ $Freqency\:Output = \frac{Frequency \: of\:clock}{(Prescaler\:Value+1) \cdot (Au
 
 There are many combinations of prescaler value and auto-reload counter that can generate the same frequency output. How can we choose a better value?
 
-As you may notice, the ARR acts as an denominator in the **Duty Cycle formula**, therefore if we want to output a short **on-time**, we need to have larger denominator. Notice that both of the CCR and ARR has to be an 16-bit unsign integer. 
+As you may notice, the ARR acts as an denominator in the **Duty Cycle formula**, therefore if we want to output a short **on-time**, we need to have larger denominator. Notice that both of the CCR and ARR has to be an **16-bit unsign integer**. 
 
 As a result, **Larger Auto-reload Value and Smaller Prescaler value would be better when outputing a short on-time.**
 
@@ -137,8 +138,8 @@ Each pin can use specific timers and timer channels. You can check the configura
 :::danger
  # Important !!!!!!
  
- - Each timer will only have one prescaler value and auto-reload counter. 
-- Each timer will have several channels that can output different on-time(compare value). (CCR1, CCR2 ...)
+ - Each timer will only have **one** prescaler value and auto-reload counter. 
+- Each timer will have **several** channels that can output different on-time(compare value). (CCR1, CCR2 ...)
 
 Which means those different channels will share same prescaler value and auto-reload counter, but have different on-time. So when using motor with different freqency, you may need different timer.
 :::
@@ -149,10 +150,12 @@ There are 4 steps in setting up the PWM output channel and the pin to use.
 1. In catergories, click **Timers** then choose the timer you want to use.
 
     Setup the **Mode** same as the figure shown.
+    It's fine if you only get 1 channel.
     
     ![](https://i.imgur.com/53oLWQH.png)
 
 2. Set the **Parameter Settings** same as the figure shown 
+*(Supposedly, You don't have to change anything)*
 
     ![](https://i.imgur.com/aNtON0o.png)
 3. **IMPORTANT:** Enable the global interupt of the timer.
@@ -166,7 +169,8 @@ There are 4 steps in setting up the PWM output channel and the pin to use.
 ## Start Coding!!!
 There are 4 steps in coding:
 
-1. Initialize the Timer for PWM
+1. Initialize the Timer for PWM 
+*(should have been implemented in the beginning of `main.c`)*
 ``` c
 MX_TIM1_Init();
 .
@@ -174,36 +178,54 @@ MX_TIM1_Init();
 .
 MX_TIM8_Init();
 ```
-2. Set the Prescaler value, Auto-reload counter
+2. Set the Prescaler value, Auto-reload counter 
 ``` c
+//in tutorial3_pwm.c in pwm_init()
 TIM1->ARR = 1234;    //set the timer1 auto-reload counter
 TIM1->PSC = 5678;    //set the timer1 prescaler value
+//We are using timer 5 channel 1!!!
 ```
 Hint: The clock of the board is running at around 84MHz.
 
-3. Start the Timer
+3. Start the Timer (in tutorial3_pwm.c in pwm_init() )
 
 ``` c
-HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+//in tutorial3_pwm.c in pwm_init()
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1); 
+//HAL_TIM_PWM_Start(timer, channel);
+//htim1 refers to timer 1
+//We are using timer 5 channel 1!!!
 ```
+
 4. Change the Compare Value as your robot needs it in the homework/classwork function
 ``` c
 TIM1->CCR1 = 321; //set the compare value of timer1 channel1
 TIM1->CCR2 = 678; //set the compare value of timer1 channel2
 ```
 
-### Use the skeleton code!!
-We have provided the skeleton code for testing, so just delete `main.c` (or just copy and paste the content in skeleton `main.c`) and drag the file `tutorial3_pwm.c` into the src file.
-
-:::danger
-You may lose all your stuff done in **main.c**. So before replacing **main.c**, you can rename it to main.c.old for backup.
-:::
+### Use the skeleton code `tutorial3_pwm.c` located in src file!!
+```c
+//add the below in main.c
+...
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+void pwm_init(void); //new line added
+void pwm_classwork(void); //new line added
+void pwm_homework(void); //new line added
+/* USER CODE END PFP */
+...
+pwm_init(); //new line added
+while (1) {
+    pwm_classwork(); //new line added
+}   
+...
+```
 
 ### Classwork 3
 :::info
-In class activity: control servo motor to turn to $-90^\circ$ -> $0^\circ$ -> $90^\circ$ (using delay only)
+In class activity: control servo motor to turn to $-90^\circ$ -> $0^\circ$ -> $90^\circ$
 
-In this servo motor the on-time is using 400 µs at ($-90^\circ$) to 2400 µs at ($90^\circ$) [calculate $0^\circ$ yourself]
+In this servo motor the on-time is using 1 ms at ( $-90^\circ$ ) to 2 ms at ( $90^\circ$ ) [calculate $0^\circ$ yourself]
 
 We are using TIM5 and Channel 1
 
