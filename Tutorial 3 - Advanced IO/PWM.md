@@ -1,4 +1,4 @@
-# Tutorial 3 - Advanced IO(PWM)
+# Tutorial 3 - Advanced IO(PWM)  [![HackMD Version](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@ytyk668/HysNzr5p9)
 
 :::spoiler Author Details (TL:DR;)
 Authors: Kelvin Leonardo
@@ -14,51 +14,51 @@ Contact: Katie (tyyeungah@connect.ust.hk)
 ## Concept of PWM
 ### Why do we need PWM signal?
 For controlling the DC motor and servo motor.
-
-The Solution: 
+**DC motor**: power (speed)
+**Servo motor**: angle
 
 **Pulse Width Modulation(PWM)** - We'll take a look into the total amount of *on-off time* of a signal. And utilize this data, rather than just the current state, to convey useful information.
 
-## How to Generate PWM Signals?
-
-Using Timers. 
-
-The above term will be explained in detail in the following notes. So no need to worry.
+REF: elec 1100 lecture10 (2022, Deparment of Electronic and Computer Engineering, HKUST)
+![](https://i.imgur.com/jnZB3Kd.jpg)
+![](https://i.imgur.com/7Iyfnpg.jpg)
 
 ### There are two main components of PWM generation:
 1. The output frequency
 2. The on-time (The time of "HIGH voltage")
     - (***Duty Cycle***) which is **on-time** to **period** ratio
     - in Second
-    
-![123](https://i.imgur.com/kcznbWB.png)
-REF: elec 1100 lecture10 (2022, Deparment of Electronic and Computer Engineering, HKUST)
-![](https://i.imgur.com/jnZB3Kd.jpg)
-![](https://i.imgur.com/7Iyfnpg.jpg)
 
+![data sheet reference](https://i.imgur.com/kcznbWB.png)
 The data-sheet will usually provide the frequency and on-time (pulse) to use. The SG90 servo uses 50 Hz and 1-2ms on-time.
 
 We will also use PWM signal to control a DC motor, which duty cycle implies the output power of the DC motor. For example letting the motor to spin at a lower speed.
 
+## How to Generate PWM Signals?
+
+Using Timers. (MCU_Clock)
+
 ## The output frequency (in second)
 
-#### General concept frequency:
-$f = \frac{1}{Period}$
 #### Frequency of clock (MCU_Clock):
 The timer of clock (in our borad we are using 84MHz)
+#### Prescaler value(PSC): 
+* to scale down the frequency of the clock
+* a 16-bit unsigned integer
+#### Auto-reloaded counter(ARR): 
+* to control the output signal
+* a 16-bit unsigned integer
 #### Frequency of PWM:
 The output (or desired frequency) for the motors
-#### Prescaler value(PSC):
-a 16-bit unsigned integer
-#### Auto-reloaded counter(ARR):
-a 16-bit unsigned integer
-
+We are using 50Hz for this servo motor.
+>Mainly refer to those items in red
+>
 ![](https://imgur.com/YF8xjhF.png)
 
-#### The Prescaler value of the upper picture is 1
+### The Prescaler value of the upper picture is 1
 As you can see, when there are 2 peaks in the **MCU_Clock**, 1 peak in **Clock after Prescaler** is generated. So the prescaler value must be 2 right? No! As we are programmers, we always count from 0. So, the **Prescaler value = 1.**
 
-#### The Auto-reloaded counter of the upper picture is 36
+### The Auto-reloaded counter of the upper picture is 36
 As you can see, when there are 37 peaks in **Clock after Prescaler**, the **Auto-reloaded counter** increases by 1, when the value is > 36, 1 peak in Counter overflow is generated and the counter is reset to 0. Again, we are programmers, so the **Auto-reloaded counter = 36.**
 
 On the above picture you can see that the **prescaler value** and **auto-reload counter** help reduce the frequency of the **MCU_Clock** and generate a lower frequency. 
@@ -78,7 +78,7 @@ $Freqency\:Output = \frac{Frequency \: of\:clock}{(Prescaler\:Value+1) \cdot (Au
 If we need a frequency output of 50Hz, what are the 3 possible combinations of prescaler value and auto-reload value? (Given that the clock frequency is 84MHz)
 :::
 
-## The On-time(duty cycle) (angle of pwm motor)
+## The On-time (duty cycle)
 
 #### Duty cycle:
 According to the figure below, the number on the left-hand side is the duty cycle, it means the percentage of time that a signal is given as "high"(or 5V). $i.e. \frac{On-Time}{Period}$
@@ -124,7 +124,7 @@ There are many combinations of prescaler value and auto-reload counter that can 
 
 As you may notice, the ARR acts as an denominator in the **Duty Cycle formula**, therefore if we want to output a short **on-time**, we need to have larger denominator. Notice that both of the CCR and ARR has to be an **16-bit unsign integer**. 
 
-As a result, **Larger Auto-reload Value and Smaller Prescaler value would be better when outputing a short on-time.**
+As a result, **Larger** *Auto-reload Value* and **Smaller** *Prescaler Value* would be better when outputing a short on-time.
 
 ### Classwork 2
 :::info
@@ -155,9 +155,9 @@ There are 4 steps in setting up the PWM output channel and the pin to use.
     ![](https://i.imgur.com/53oLWQH.png)
 
 2. Set the **Parameter Settings** same as the figure shown 
-*(Supposedly, You don't have to change anything)*
+>Supposedly, You don't have to change anything
 
-    ![](https://i.imgur.com/aNtON0o.png)
+![](https://i.imgur.com/aNtON0o.png)
 3. **IMPORTANT:** Enable the global interupt of the timer.
 
     ![](https://i.imgur.com/z2MDit3.png)
@@ -170,7 +170,7 @@ There are 4 steps in setting up the PWM output channel and the pin to use.
 There are 4 steps in coding:
 
 1. Initialize the Timer for PWM 
-*(should have been implemented in the beginning of `main.c`)*
+> should have been implemented in the beginning of `main.c`
 ``` c
 MX_TIM1_Init();
 .
