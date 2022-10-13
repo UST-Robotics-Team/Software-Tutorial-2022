@@ -1,7 +1,5 @@
 # Tutorial 3 - Advanced IO(PWM)  [![HackMD Version](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@ytyk668/HysNzr5p9)
 
-# Tutorial 3 - Advanced IO(PWM)
-
 :::spoiler Author Details (TL:DR;)
 Authors: Kelvin Leonardo
 
