@@ -96,8 +96,10 @@ as there may be some chance that one may loss some marbles during the “game”
 ## Bonus
 You can design your own Special Move:
 **A Special Move** is a custom Move that must be designed by yourself, the only requirements are:
+- Use the servo!
 - It looks cool. At least not similar to Single and Double Move. [3]
 - Use some LEDs. [2]
+
 
 ## Rules to obey
 - Single Move can be use at any time.
