@@ -230,8 +230,10 @@ while (1) {
 ### Classwork 3
 :::info
 In class activity: control servo motor to turn to $-90^\circ$ -> $0^\circ$ -> $90^\circ$
+( stop a while at $0^\circ$ )
 
-In this servo motor the on-time is using 1 ms at ( $-90^\circ$ ) to 2 ms at ( $90^\circ$ ) [calculate $0^\circ$ yourself]
+In this servo motor the on-time is using 1 ms at ( $-90^\circ$ ) to 2 ms at ( $90^\circ$ )
+[calculate $0^\circ$ yourself]
 
 We are using TIM5 and Channel 1
 
