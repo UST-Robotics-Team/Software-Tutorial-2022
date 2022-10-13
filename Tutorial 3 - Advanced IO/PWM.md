@@ -1,5 +1,7 @@
 # Tutorial 3 - Advanced IO(PWM)  [![HackMD Version](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](https://hackmd.io/@ytyk668/HysNzr5p9)
 
+# Tutorial 3 - Advanced IO(PWM)
+
 :::spoiler Author Details (TL:DR;)
 Authors: Kelvin Leonardo
 
@@ -112,6 +114,8 @@ When the auto-reload counter is smaller than `CCRx`, the output PWM will give a 
 
 The ARR (auto-reload counter) from the previous paragraph is used as a downscaler of clock frequency. But in here, it acts as a denominator and `CCRx` acts as an numerator.
 
+$Frenquency = \frac{1}{Period}$
+
 $Duty\:Cycle = \frac{CCR(Compare\:Value)+1}{ARR(auto-reload\:counter)+1} = \frac{On-time}{Period}$
  
 ### How to choose the value of auto-reload counter and prescaler value
@@ -160,11 +164,11 @@ There are 4 steps in setting up the PWM output channel and the pin to use.
 ![](https://i.imgur.com/aNtON0o.png)
 3. **IMPORTANT:** Enable the global interupt of the timer.
 
-    ![](https://i.imgur.com/z2MDit3.png)
+![](https://i.imgur.com/z2MDit3.png)
 
 4. Assign the GPIO pin to be the specific timer and channel. E.g Assign the PC7 pin to output the pwm signal of TIM3_CH2.
 
-    ![](https://i.imgur.com/MzvaMDI.png)
+![](https://i.imgur.com/MzvaMDI.png)
 
 ## Start Coding!!!
 There are 4 steps in coding:
@@ -209,14 +213,18 @@ TIM1->CCR2 = 678; //set the compare value of timer1 channel2
 ...
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void pwm_init(void); //new line added
-void pwm_classwork(void); //new line added
-void pwm_homework(void); //new line added
+
+/* add the following 3 lines*/
+void pwm_init(void); //add this line!
+void pwm_classwork(void); //add this line!
+void pwm_homework(void); //add this line!
+
 /* USER CODE END PFP */
 ...
-pwm_init(); //new line added
+pwm_init(); //add this line!
+
 while (1) {
-    pwm_classwork(); //new line added
+    pwm_classwork(); //add this line!
 }   
 ...
 ```
