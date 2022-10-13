@@ -4,7 +4,7 @@
 
 #### Edited by: Katie (tyyeungah@connect.ust.hk)
 
-In this homework you will design and implement a "pinball machine". The setup consists of a development board (which has 2 buttons and 3 LEDs), a servo, and a tiny 3D-printed "paddle" attached to the servo. You need to use PWM to control the servo to achieve the desired functionality described below. 
+In this homework you will design and implement a "pinball machine". The setup consists of a development board (which has 2 buttons and 4 LEDs), a servo, and a tiny 3D-printed "paddle" attached to the servo. You need to use PWM to control the servo to achieve the desired functionality described below. 
 
 The main goal is to have a controller that works and feels like a pinball machine.
 
