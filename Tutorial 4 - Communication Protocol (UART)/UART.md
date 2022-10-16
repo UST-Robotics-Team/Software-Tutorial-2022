@@ -150,7 +150,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
  -->
 
 ### Sending Data from your STM32 to computer
-
+> **Direct download Coolterm for everyone**: https://github.com/UST-Robotics-Team/Software-Tutorial-2022/releases/tag/coolterm \
+> (Below are for your information)\
 > Coolterm (Windows / Mac): https://freeware.the-meiers.org/ \
 > HTerm (Windows only): http://der-hammer.info/pages/terminal.html
 
