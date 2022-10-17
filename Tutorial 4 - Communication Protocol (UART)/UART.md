@@ -220,8 +220,8 @@ Connect the USB-TTL with your device as follows:
 2. `AT+RESET`: Back to normal mode, doesn't mean reset configs
 3. `AT+NAME?`: Return name of the device
 4. `AT+NAME=<Param>`: Set name
-5. `AT+ PSWD?`: Return password
-6. `AT+ PSWD=<Param>`: Set password
+5. `AT+PSWD?`: Return password
+6. `AT+PSWD=<Param>`: Set password
 7. `AT+UART=<Param>,<Param2>,<Param3> `: Set baud rate,stop bit (0 -- 1 bit,1 -- 2 bit),no. of parity bit (**recommended settings: AT+UART=115200,0,0**)
 8. `AT+UART?`: Return setting of uart
 9. `AT+ORGL`: Reset all setting to default ones
