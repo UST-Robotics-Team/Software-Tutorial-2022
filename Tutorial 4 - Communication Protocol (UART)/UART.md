@@ -72,6 +72,22 @@ After the initialization, you can start sending and receiving data by calling fu
 
 >Helper functions documentation for your reference: https://www.disca.upv.es/aperles/arm_cortex_m3/llibre/st/STM32F439xx_User_Manual/group__uart__exported__functions__group2.html
 
+#### Function Definition & Explanation
+Transmit function
+```c
+HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+```
+
+`HAL_UART_Transmit()` transmits the given data within the time limit.
+
+`huart`: UART handler. HAL Library needs to know what UART port should be used for data transfer. &huart1  and &huart3 are the possible values.
+
+`pData`: Data array. Here it means the sequence of data that you want to transmit.
+
+`Size`: The length of data array.
+
+`Timeout`: Time limit for transmitting data. If huart is busy for some reasons (for example,  sending other data), the program will stay for at most Timeout millisecond to wait until the sending operation is completed. if the program reaches time limit, it will give up to transmit data.
+
 **TX Example:**
 
 ```c
@@ -81,6 +97,31 @@ while (1)
 	static const char dat[] = "Hello, Word!";
 	HAL_UART_Transmit (&huart1, (uint8_t*)&dat, sizeof(dat), 0xFFFF);
 	HAL_Delay(200);
+}
+```
+Receive function
+```c
+HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+```
+
+`HAL_UART_Receive()` receives the given data within the time limit.
+
+`huart`: UART handler. HAL Library needs to know what UART port should be used for data receive. &huart1  and &huart3 are the possible values.
+
+`pData`: Data array. Here it means the array that you want to store received data in.
+
+`Size`: The length of data array.
+
+`Timeout`: Time limit for receiving data. If huart is busy for some reasons (for example,  not receiving any data), the program will stay for at most Timeout millisecond to wait until the receiving operation is completed. if the program reaches time limit, it will give up to receive data.
+
+**RX Example:**
+
+```c
+while (1)
+{
+    /* Receiving */
+	static char dat[99];
+	HAL_UART_Receive(&huart1, (uint8_t*)&dat, sizeof(dat), 0xFFFF);
 }
 ```
 
@@ -167,6 +208,8 @@ Locate the UART1/UART3 port on your STM32 (it's below your ST-Link port/flashing
 |`RXD`|`T`|
 |`GND`|`G`|
 
+![](https://i.imgur.com/7txCBWg.jpg)
+
 If you are using HC-05 (one of the bluetooth modules), please follow the pin arrangement below:
 
 #### Main board side
@@ -204,6 +247,13 @@ Press connect and run your board, and the messages should appears.
 For the CoolTerm terminal, raw mode means that data will be sent when you press a key on the keyboard, Whereas there will be an extra line for you to input a whole string and send at once in line-mode. This two modes mostly matter when configuring the Bluetooth device and will be covered later.
 
 Local echo means that CoolTerm will display what you typed and does not affect what you send/receive.
+
+For Mac users choose DANNY2
+![](https://i.imgur.com/1HguMsY.jpg)
+
+For Win users choose the new added com port (e.g. COM5)
+![](https://i.imgur.com/CqdDjje.png)
+
 ### Setup Your Bluetooth device
 Connect the USB-TTL with your device as follows:
 
@@ -254,6 +304,7 @@ Strings to send:
 
 You should parse these commands on the mainboard and perform the appropriate action.
 
+note: in C, you do not directly compare two strings (i.e. `" "==" "` is invalid), instead, you compare each char (i.e. `' '==' '`is valid)
 ## AT command setup
 
 Step 0: 
