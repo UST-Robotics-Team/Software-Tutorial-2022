@@ -17,10 +17,8 @@ Further modified by: Brian
 Differential Signal
 ![](https://i.imgur.com/PfL9kJR.png)
 #### The way data is sent on the CAN Bus is through differential signalling. We use both the line CAN high and CAN low to transmit the data at the same time.
-##### Reccesive level - represent logical 0
-(both of the line are staying at about 2.5 volt, so the differential voltage ~0 volt)
-##### Dominant level - represent logical 1
-(CAN high line goes to a higher voltage, meanwhile the CAN low line goes to a lower voltage, differential voltage ～2.5volts)
+##### Reccesive level - represent logical 1
+##### Dominant level - represent logical 0
 
 There are four types of CAN frames:
 * Data Frame
